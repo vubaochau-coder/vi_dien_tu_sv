@@ -50,6 +50,13 @@ class _ResetPasswordState extends State<ResetPassword> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        title: const Text(
+          '3/3',
+          style: TextStyle(
+            color: Colors.grey,
+          ),
+        ),
+        centerTitle: true,
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         leading: IconButton(
@@ -117,7 +124,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     'Enter new password',
                     style: TextStyle(
                       color: darkBlue,
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -168,7 +175,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     'Confirm new password',
                     style: TextStyle(
                       color: darkBlue,
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

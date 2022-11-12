@@ -33,6 +33,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        title: const Text(
+          '1/3',
+          style: TextStyle(
+            color: Colors.grey,
+          ),
+        ),
+        centerTitle: true,
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         leading: IconButton(
@@ -100,7 +107,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     'Enter your email',
                     style: TextStyle(
                       color: darkBlue,
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

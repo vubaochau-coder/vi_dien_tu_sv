@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vi_dien_tu_sv/CreateAccount/create_acc.dart';
 import 'package:vi_dien_tu_sv/ForgotPass/forgot_pass.dart';
 
 import 'main_screen.dart';
@@ -341,13 +342,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             TextButton(
                               onPressed: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) {
-                                      return const ForgotPassword();
-                                    },
-                                  ),
-                                );
+                                forgotPassButtonClick(context);
                               },
                               style: TextButton.styleFrom(
                                 foregroundColor: darkBlue,
@@ -364,12 +359,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                createAccButtonClick(context);
+                              },
                               style: TextButton.styleFrom(
                                 foregroundColor: lightBlue,
                               ),
                               child: const Text('Create Account'),
-                            )
+                            ),
                           ],
                         ),
                       )
@@ -380,6 +377,26 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void forgotPassButtonClick(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return const ForgotPassword();
+        },
+      ),
+    );
+  }
+
+  void createAccButtonClick(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return const CreateAccount();
+        },
       ),
     );
   }

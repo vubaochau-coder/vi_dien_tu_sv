@@ -40,6 +40,13 @@ class _ForgotPass2State extends State<ForgotPass2> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        title: const Text(
+          '2/3',
+          style: TextStyle(
+            color: Colors.grey,
+          ),
+        ),
+        centerTitle: true,
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         leading: IconButton(
@@ -107,7 +114,7 @@ class _ForgotPass2State extends State<ForgotPass2> {
                     'Enter verification code',
                     style: TextStyle(
                       color: darkBlue,
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
