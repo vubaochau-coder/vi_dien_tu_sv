@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vi_dien_tu_sv/CreateAccount/create_acc.dart';
 import 'package:vi_dien_tu_sv/ForgotPass/forgot_pass.dart';
+import 'package:vi_dien_tu_sv/MyCustomWidget/my_textfiled_custom.dart';
 
 import 'main_screen.dart';
 
@@ -22,34 +23,14 @@ class _LoginScreenState extends State<LoginScreen> {
   Color darkBlue = const Color.fromARGB(255, 0, 41, 135);
   Color lightBlue = const Color.fromARGB(255, 0, 133, 204);
 
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double y = MediaQuery.of(context).size.height;
     double screenHeight = y -
         MediaQuery.of(context).padding.top -
         MediaQuery.of(context).padding.bottom;
-    textUserNameFocus.addListener(() {
-      if (textUserNameFocus.hasFocus) {
-        setState(() {
-          txtUserNameBackground = Colors.white;
-        });
-      } else {
-        setState(() {
-          txtUserNameBackground = const Color.fromRGBO(238, 238, 238, 1);
-        });
-      }
-    });
-    textPassFocus.addListener(() {
-      if (textPassFocus.hasFocus) {
-        setState(() {
-          txtPassBackground = Colors.white;
-        });
-      } else {
-        setState(() {
-          txtPassBackground = const Color.fromRGBO(238, 238, 238, 1);
-        });
-      }
-    });
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -105,85 +86,31 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            TextField(
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    borderSide: BorderSide.none),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide: BorderSide(
-                                    color: lightBlue,
-                                    width: 2,
-                                  ),
-                                ),
-                                hintText: 'Username or email',
-                                contentPadding: const EdgeInsets.only(
-                                  left: 24,
-                                  right: 24,
-                                  top: 18,
-                                  bottom: 18,
-                                ),
-                                prefixIconColor: lightBlue,
-                                prefixIcon: const Icon(
-                                  Icons.person,
-                                ),
-                                fillColor: txtUserNameBackground,
-                                filled: true,
+                            CustomTextField(
+                              "Enter your email",
+                              const EdgeInsets.only(
+                                left: 24,
+                                right: 24,
+                                top: 18,
+                                bottom: 18,
                               ),
-                              focusNode: textUserNameFocus,
-                              onEditingComplete: () {
-                                FocusScope.of(context)
-                                    .requestFocus(textPassFocus);
-                              },
+                              Icons.person,
+                              false,
+                              usernameController,
+                              TextInputType.emailAddress,
                             ),
-                            TextField(
-                              obscureText: isUnshowPass,
-                              autocorrect: false,
-                              enableSuggestions: false,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    borderSide: BorderSide.none),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide: BorderSide(
-                                    color: lightBlue,
-                                    width: 2,
-                                  ),
-                                ),
-                                hintText: 'Password',
-                                contentPadding: const EdgeInsets.only(
-                                  left: 24,
-                                  right: 24,
-                                  top: 18,
-                                  bottom: 18,
-                                ),
-                                prefixIconColor: lightBlue,
-                                suffixIconColor: lightBlue,
-                                prefixIcon: const Icon(
-                                  Icons.vpn_key,
-                                ),
-                                suffixIcon: IconButton(
-                                  icon: Icon(isUnshowPass
-                                      ? Icons.visibility_off
-                                      : Icons.visibility),
-                                  onPressed: () {
-                                    setState(() {
-                                      isUnshowPass = !isUnshowPass;
-                                    });
-                                  },
-                                ),
-                                fillColor: txtPassBackground,
-                                filled: true,
+                            CustomTextField(
+                              "Password",
+                              const EdgeInsets.only(
+                                left: 24,
+                                right: 24,
+                                top: 18,
+                                bottom: 18,
                               ),
-                              focusNode: textPassFocus,
+                              Icons.vpn_key,
+                              true,
+                              passwordController,
+                              TextInputType.visiblePassword,
                             ),
                           ],
                         ),
@@ -246,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             width: 8,
                                           ),
                                           Text(
-                                            'Loading...',
+                                            'Logging in...',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,
@@ -340,15 +267,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            TextButton(
-                              onPressed: () {
-                                forgotPassButtonClick(context);
-                              },
-                              style: TextButton.styleFrom(
-                                foregroundColor: darkBlue,
-                              ),
-                              child: const Text(
-                                'Forgot Password?',
+                            Expanded(
+                              flex: 1,
+                              child: TextButton(
+                                onPressed: () {
+                                  forgotPassButtonClick(context);
+                                },
+                                style: TextButton.styleFrom(
+                                  foregroundColor: darkBlue,
+                                ),
+                                child: const Text(
+                                  'Forgot Password?',
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -358,14 +288,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                 thickness: 2,
                               ),
                             ),
-                            TextButton(
-                              onPressed: () {
-                                createAccButtonClick(context);
-                              },
-                              style: TextButton.styleFrom(
-                                foregroundColor: lightBlue,
+                            Expanded(
+                              flex: 1,
+                              child: TextButton(
+                                onPressed: () {
+                                  createAccButtonClick(context);
+                                },
+                                style: TextButton.styleFrom(
+                                  foregroundColor: lightBlue,
+                                ),
+                                child: const Text('Create Account'),
                               ),
-                              child: const Text('Create Account'),
                             ),
                           ],
                         ),

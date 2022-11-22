@@ -1,6 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:vi_dien_tu_sv/ForgotPass/reset_pass.dart';
+import 'package:vi_dien_tu_sv/MyCustomWidget/my_verify_textfield.dart';
 
 class ForgotPass2 extends StatefulWidget {
   const ForgotPass2({super.key});
@@ -15,28 +17,43 @@ class _ForgotPass2State extends State<ForgotPass2> {
 
   FocusNode inputFocus = FocusNode();
   Color inputBackground = const Color.fromRGBO(238, 238, 238, 1);
-  var inputColors = const [
-    Color.fromRGBO(238, 238, 238, 1),
-    Color.fromRGBO(238, 238, 238, 1),
-    Color.fromRGBO(238, 238, 238, 1),
-    Color.fromRGBO(238, 238, 238, 1)
-  ].toList();
+
+  TextEditingController text1 = TextEditingController();
+  TextEditingController text2 = TextEditingController();
+  TextEditingController text3 = TextEditingController();
+  TextEditingController text4 = TextEditingController();
+
+  FocusNode focus1 = FocusNode();
+  FocusNode focus2 = FocusNode();
+  FocusNode focus3 = FocusNode();
+  FocusNode focus4 = FocusNode();
+
+  static const int maxSeconds = 300;
+  int mySeconds = maxSeconds;
+
+  void startTime() {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (mySeconds > 0) {
+        if (mounted) {
+          setState(() {
+            mySeconds--;
+          });
+        }
+      } else {
+        timer.cancel();
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startTime();
+  }
 
   @override
   Widget build(BuildContext context) {
-    inputFocus.addListener(
-      () {
-        if (inputFocus.hasFocus) {
-          setState(() {
-            inputBackground = Colors.white;
-          });
-        } else {
-          setState(() {
-            inputBackground = const Color.fromRGBO(238, 238, 238, 1);
-          });
-        }
-      },
-    );
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -125,150 +142,10 @@ class _ForgotPass2State extends State<ForgotPass2> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: 64,
-                      width: 64,
-                      child: TextField(
-                        onChanged: (value) {
-                          if (value.length == 1) {
-                            FocusScope.of(context).nextFocus();
-                          }
-                        },
-                        style: Theme.of(context).textTheme.headline6,
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(1),
-                          FilteringTextInputFormatter.digitsOnly,
-                        ],
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(
-                              color: darkBlue,
-                              width: 2,
-                            ),
-                          ),
-                          fillColor: inputColors[0],
-                          filled: true,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 64,
-                      width: 64,
-                      child: TextField(
-                        onChanged: (value) {
-                          if (value.length == 1) {
-                            FocusScope.of(context).nextFocus();
-                          }
-                        },
-                        style: Theme.of(context).textTheme.headline6,
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(1),
-                          FilteringTextInputFormatter.digitsOnly,
-                        ],
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(
-                              color: darkBlue,
-                              width: 2,
-                            ),
-                          ),
-                          fillColor: inputColors[1],
-                          filled: true,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 64,
-                      width: 64,
-                      child: TextField(
-                        onChanged: (value) {
-                          if (value.length == 1) {
-                            FocusScope.of(context).nextFocus();
-                          }
-                        },
-                        style: Theme.of(context).textTheme.headline6,
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(1),
-                          FilteringTextInputFormatter.digitsOnly,
-                        ],
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(
-                              color: darkBlue,
-                              width: 2,
-                            ),
-                          ),
-                          fillColor: inputColors[2],
-                          filled: true,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 64,
-                      width: 64,
-                      child: TextField(
-                        onChanged: (value) {
-                          if (value.length == 1) {
-                            FocusScope.of(context).nextFocus();
-                          }
-                        },
-                        style: Theme.of(context).textTheme.headline6,
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(1),
-                          FilteringTextInputFormatter.digitsOnly,
-                        ],
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(
-                              color: darkBlue,
-                              width: 2,
-                            ),
-                          ),
-                          fillColor: inputColors[3],
-                          filled: true,
-                        ),
-                      ),
-                    ),
+                    VerifyCodeTextField(focus1, focus2, text1, false),
+                    VerifyCodeTextField(focus2, focus3, text2, false),
+                    VerifyCodeTextField(focus3, focus4, text3, false),
+                    VerifyCodeTextField(focus4, focus1, text4, true),
                   ],
                 ),
                 const SizedBox(
@@ -285,11 +162,34 @@ class _ForgotPass2State extends State<ForgotPass2> {
                             fontSize: 14,
                           )),
                       Text(
-                        '04:59',
+                        "0${mySeconds ~/ 60}:${(mySeconds % 60).toString().padLeft(2, '0')}",
                         style: TextStyle(
                           color: lightBlue,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Didn\'t get code?',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 14,
+                          )),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'RESEND CODE',
+                          style: TextStyle(color: lightBlue),
                         ),
                       ),
                     ],

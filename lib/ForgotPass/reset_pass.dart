@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vi_dien_tu_sv/MyCustomWidget/my_textfiled_custom.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
@@ -11,42 +12,14 @@ class _ResetPasswordState extends State<ResetPassword> {
   Color darkBlue = const Color.fromARGB(255, 0, 41, 135);
   Color lightBlue = const Color.fromARGB(255, 0, 133, 204);
 
-  FocusNode passFocus = FocusNode();
   Color passBackground = const Color.fromRGBO(238, 238, 238, 1);
-  FocusNode confirmFocus = FocusNode();
+
   Color confirmBackground = const Color.fromRGBO(238, 238, 238, 1);
 
-  bool isUnshowPass = true;
-  bool isUnshowConfirm = true;
-
+  TextEditingController passController = TextEditingController();
+  TextEditingController confirmController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    passFocus.addListener(
-      () {
-        if (passFocus.hasFocus) {
-          setState(() {
-            passBackground = Colors.white;
-          });
-        } else {
-          setState(() {
-            passBackground = const Color.fromRGBO(238, 238, 238, 1);
-          });
-        }
-      },
-    );
-    confirmFocus.addListener(
-      () {
-        if (confirmFocus.hasFocus) {
-          setState(() {
-            confirmBackground = Colors.white;
-          });
-        } else {
-          setState(() {
-            confirmBackground = const Color.fromRGBO(238, 238, 238, 1);
-          });
-        }
-      },
-    );
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -132,39 +105,18 @@ class _ResetPasswordState extends State<ResetPassword> {
                 const SizedBox(
                   height: 12,
                 ),
-                TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    prefixIcon: const Icon(Icons.vpn_key),
-                    prefixIconColor: lightBlue,
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(
-                        color: lightBlue,
-                        width: 2,
-                      ),
-                    ),
-                    fillColor: passBackground,
-                    filled: true,
-                    suffixIcon: IconButton(
-                      icon: Icon(isUnshowPass
-                          ? Icons.visibility_off
-                          : Icons.visibility),
-                      onPressed: () {
-                        setState(() {
-                          isUnshowPass = !isUnshowPass;
-                        });
-                      },
-                    ),
-                    suffixIconColor: lightBlue,
+                CustomTextField(
+                  "",
+                  const EdgeInsets.only(
+                    left: 24,
+                    right: 24,
+                    top: 18,
+                    bottom: 18,
                   ),
-                  focusNode: passFocus,
-                  obscureText: isUnshowPass,
+                  Icons.vpn_key,
+                  true,
+                  passController,
+                  TextInputType.visiblePassword,
                 ),
                 const SizedBox(
                   height: 22,
@@ -183,39 +135,18 @@ class _ResetPasswordState extends State<ResetPassword> {
                 const SizedBox(
                   height: 12,
                 ),
-                TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    prefixIcon: const Icon(Icons.lock_reset),
-                    prefixIconColor: lightBlue,
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(
-                        color: lightBlue,
-                        width: 2,
-                      ),
-                    ),
-                    fillColor: confirmBackground,
-                    filled: true,
-                    suffixIcon: IconButton(
-                      icon: Icon(isUnshowConfirm
-                          ? Icons.visibility_off
-                          : Icons.visibility),
-                      onPressed: () {
-                        setState(() {
-                          isUnshowConfirm = !isUnshowConfirm;
-                        });
-                      },
-                    ),
-                    suffixIconColor: lightBlue,
+                CustomTextField(
+                  "",
+                  const EdgeInsets.only(
+                    left: 24,
+                    right: 24,
+                    top: 18,
+                    bottom: 18,
                   ),
-                  focusNode: confirmFocus,
-                  obscureText: isUnshowConfirm,
+                  Icons.lock_reset,
+                  true,
+                  confirmController,
+                  TextInputType.text,
                 ),
                 const SizedBox(
                   height: 22,
