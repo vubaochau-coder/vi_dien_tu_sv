@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vi_dien_tu_sv/ForgotPass/forgot_pass_2.dart';
+import 'package:vi_dien_tu_sv/MyCustomWidget/my_textfiled_custom.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -12,27 +13,21 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   Color darkBlue = const Color.fromARGB(255, 0, 41, 135);
   Color lightBlue = const Color.fromARGB(255, 0, 133, 204);
 
-  FocusNode inputFocus = FocusNode();
   Color inputBackground = const Color.fromRGBO(238, 238, 238, 1);
+  TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    inputFocus.addListener(
-      () {
-        if (inputFocus.hasFocus) {
-          setState(() {
-            inputBackground = Colors.white;
-          });
-        } else {
-          setState(() {
-            inputBackground = const Color.fromRGBO(238, 238, 238, 1);
-          });
-        }
-      },
-    );
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        title: const Text(
+          '1/3',
+          style: TextStyle(
+            color: Colors.grey,
+          ),
+        ),
+        centerTitle: true,
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         leading: IconButton(
@@ -100,7 +95,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     'Enter your email',
                     style: TextStyle(
                       color: darkBlue,
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -108,27 +103,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 const SizedBox(
                   height: 12,
                 ),
-                TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    prefixIcon: const Icon(Icons.email),
-                    prefixIconColor: lightBlue,
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(
-                        color: lightBlue,
-                        width: 2,
-                      ),
-                    ),
-                    fillColor: inputBackground,
-                    filled: true,
+                CustomTextField(
+                  "",
+                  const EdgeInsets.only(
+                    left: 24,
+                    right: 24,
+                    top: 18,
+                    bottom: 18,
                   ),
-                  focusNode: inputFocus,
+                  Icons.email,
+                  false,
+                  emailController,
+                  TextInputType.emailAddress,
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 12),
