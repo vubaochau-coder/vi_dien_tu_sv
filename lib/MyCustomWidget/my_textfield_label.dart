@@ -72,6 +72,5 @@ class _LabelTextFieldState extends State<LabelTextField> {
         });
       },
     );
-    ;
   }
 }

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CustomTextField extends StatefulWidget {
-  const CustomTextField(this.hint, this.padding, this.prefix, this.isPassTxt,
-      this.controller, this.inputType,
-      {super.key});
-
   final String hint;
   final EdgeInsets padding;
   final IconData prefix;
   final bool isPassTxt;
   final TextEditingController controller;
   final TextInputType inputType;
+
+  const CustomTextField(this.hint, this.padding, this.prefix, this.isPassTxt,
+      this.controller, this.inputType,
+      {super.key});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();

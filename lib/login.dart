@@ -46,8 +46,8 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 SizedBox(
                   height: screenHeight * 0.3,
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  child: Image.asset('images/paypal_name_cropped.png'),
+                  width: MediaQuery.of(context).size.width * 0.85,
+                  child: Image.asset('images/svpay_logo.png'),
                 ),
                 SizedBox(
                   height: screenHeight * 0.7,
@@ -269,15 +269,19 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             Expanded(
                               flex: 1,
-                              child: TextButton(
-                                onPressed: () {
-                                  forgotPassButtonClick(context);
-                                },
-                                style: TextButton.styleFrom(
-                                  foregroundColor: darkBlue,
-                                ),
-                                child: const Text(
-                                  'Forgot Password?',
+                              child: Container(
+                                padding: const EdgeInsets.only(right: 20),
+                                child: TextButton(
+                                  onPressed: () {
+                                    forgotPassButtonClick(context);
+                                  },
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: darkBlue,
+                                  ),
+                                  child: const Text(
+                                    'Forgot Password',
+                                    textAlign: TextAlign.right,
+                                  ),
                                 ),
                               ),
                             ),
@@ -290,14 +294,20 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             Expanded(
                               flex: 1,
-                              child: TextButton(
-                                onPressed: () {
-                                  createAccButtonClick(context);
-                                },
-                                style: TextButton.styleFrom(
-                                  foregroundColor: lightBlue,
+                              child: Container(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: TextButton(
+                                  onPressed: () {
+                                    createAccButtonClick(context);
+                                  },
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: lightBlue,
+                                  ),
+                                  child: const Text(
+                                    'Create Account',
+                                    textAlign: TextAlign.left,
+                                  ),
                                 ),
-                                child: const Text('Create Account'),
                               ),
                             ),
                           ],
