@@ -47,6 +47,7 @@ class _ForgotPass2State extends State<ForgotPass2> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     startTime();
